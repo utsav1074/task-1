@@ -1,0 +1,34 @@
+.transactions-container {
+    margin-top: 20px;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-header {
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+.transactions-header th {
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
+}
+
+.transactions-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.credit {
+    color: green;
+    font-weight: bold;
+}
+
+.debit {
+    color: red;
+    font-weight: bold;
+}

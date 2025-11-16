@@ -1,0 +1,117 @@
+/* ===== Base canvas ===== */
+.tree {
+    background: #eef2f5;
+    /* light gray canvas */
+    min-height: 60vh;
+    padding: 40px;
+    display: grid;
+    place-items: center;
+    /* centers the tree block */
+    font-family: Arial, sans-serif;
+}
+
+/* ===== 3-row layout: parent → connector row → children ===== */
+.branch {
+    display: grid;
+    grid-template-rows: auto 64px auto;
+    /* increased vertical gap (was 32px) */
+    justify-items: center;
+    align-items: start;
+}
+
+/* ===== Node boxes ===== */
+.node {
+    min-width: 44px;
+    height: 44px;
+    padding: 4px 10px;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    color: #111111;
+    border: 2px solid #444444;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* ===== Connector rows (draw lines only) ===== */
+/* Shared base for both top connector (.links) and inner connectors (.link2) */
+.links,
+.link2 {
+    position: relative;
+    width: 100%;
+    height: 64px;
+    /* increased from 32px to match the new vertical spacing */
+}
+
+/* Short vertical from parent down to the bar (top half of connector row) */
+.links::before,
+.link2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 32px;
+    /* half of 64px */
+    border-left: 2px solid #444444;
+}
+
+/* Single horizontal bar across the middle (exactly at 32px) */
+/* Top-level bar (root → level 1) */
+.links::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    /* middle of the 64px connector row */
+    left: 22.75%;
+    right: 22.75%;
+    border-top: 2px solid #444444;
+}
+
+/* Inner bars (level 1 → level 2) */
+.link2::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    /* middle of the 64px connector row */
+    left: 20%;
+    right: 20%;
+    border-top: 2px solid #444444;
+}
+
+/* ===== Children row (two equal columns) ===== */
+.children {
+    width: 100%;
+    min-width: 320px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    /* horizontal distance between children */
+    justify-items: center;
+    align-items: start;
+}
+
+/* Short verticals from the bar down to each child (bottom half of connector row) */
+.child {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.child::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -32px;
+    /* starts exactly at the bar above (half of 64px) */
+    height: 32px;
+    /* half of connector height */
+    border-left: 2px solid #444444;
+}
+
+.node.selected {
+    background: #cde4ff;
+    border-color: #1d4ed8;
+}
